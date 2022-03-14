@@ -17,7 +17,7 @@ const AddEmployeeComponent = () => {
         })
     }, [eId])
     
-          
+                  
     const saveOrUpdateEmployee = (e)=>{
         e.preventDefault();
         const employee={eName,eDesignation};
@@ -32,7 +32,7 @@ const AddEmployeeComponent = () => {
 
                 console.log(response.data);
     
-                navigate('/employee');
+                navigate('/');
             }).catch(error=>{
                 console.log(error)
             })
@@ -64,7 +64,7 @@ const AddEmployeeComponent = () => {
                         <form>
                             <div className='form-group mb-2'>
                                 <label className='form-label'>Employee Name:</label>
-                                <input type ='text' placeholder='Enter Employee Name'
+                                <input type ='text' required placeholder='Enter Employee Name'
                                 name='name'
                                 className='form-control'
                                 value={eName}
@@ -73,7 +73,7 @@ const AddEmployeeComponent = () => {
 
                             <div className='form-group mb-2'>
                                 <label className='form-label'>Employee Designation:</label>
-                                <input type ='text' placeholder='Enter Employee Designation'
+                                <input type ='text' required placeholder='Enter Employee Designation'
                                 name='designation'
                                 className='form-control'
                                 value={eDesignation}

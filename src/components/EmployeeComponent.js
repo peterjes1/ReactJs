@@ -42,7 +42,7 @@ import './EmployeeComponent.css'
 
 <h1 className='text-center'>Employee List</h1>
 
-<Link to = "/add-employee" className='btn btn-primary mb-2'>Add Employee</Link>
+{/* <Link to = "/add-employee" className='btn btn-primary mb-2'>Add Employee</Link> */}
 <div className='table-css table-responsive'>
  <table className='table table-bordered table-striped table-hover '>
    
