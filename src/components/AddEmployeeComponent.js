@@ -32,7 +32,7 @@ const AddEmployeeComponent = () => {
 
                 console.log(response.data);
     
-                navigate('/');
+                navigate('/employee');
             }).catch(error=>{
                 console.log(error)
             })
@@ -42,12 +42,21 @@ const AddEmployeeComponent = () => {
     }
     const title=()=>{
         if(eId){
-            return <h2 className='text-center'>Update Employee</h2>;
+            return <div> Update Employee</div>;
         }
         else{
-            return <h2 className='text-center'>Add Employee</h2>;
+            return <div> Add Employee</div>;
         }
 
+    }
+    const title1=()=>{
+        if(eId){
+            return <h2 className='text-center'>Update Employee</h2>
+
+        }
+        else{
+            return <h2 className='text-center'>Add Employee</h2>
+        }
     }
 
   return (
@@ -58,7 +67,7 @@ const AddEmployeeComponent = () => {
             <div className='row'>
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
                     {
-                        title()
+                        title1()
                     }
                     <div className='card-body'>
                         <form>
@@ -79,7 +88,7 @@ const AddEmployeeComponent = () => {
                                 value={eDesignation}
                                 onChange= {(e)=> seteDesignation(e.target.value)}/>
                             </div>
-                            <button className='btn btn-success' onClick={(e)=>{saveOrUpdateEmployee(e)}}>Add Employee</button>
+                            <button className='btn btn-success' onClick={(e)=>{saveOrUpdateEmployee(e)}}>{title()}</button>
                             <Link to={"/employee"} className="btn btn-danger t">Cancel</Link>
                         </form>
                     </div>

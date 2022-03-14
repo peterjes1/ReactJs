@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+
+import React, { useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import EmployeeService from '../Services/EmployeeService';
 
@@ -8,8 +9,8 @@ const Login = () => {
     const [userName, setuserName] = useState('');
     const [password,setpassword] = useState('');
     
-
-
+  
+    
 
     const loginuser = (e)=>{
 
@@ -19,10 +20,17 @@ const Login = () => {
             // console.log(JSON.parse(response.data));
             if(response.data.jwtToken){
                 localStorage.setItem('user',JSON.stringify(response.data));
+                 
 
                 navigate("/employee");
+                window.location.reload();
             }
+            
         }).catch(error=>{
+
+            setuserName('');
+            setpassword('');
+           
             console.log(JSON.stringify(error));
         });
 
@@ -33,6 +41,7 @@ const Login = () => {
 
 <br/><br/>
         <div className='container '>
+            <div id='check'></div>
             <div className='row'>
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
                     Login
