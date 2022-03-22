@@ -9,12 +9,14 @@ const AddEmployeeComponent = () => {
     const {eId} = useParams();
 
     useEffect(() => {
+        if(eId){
      EmployeeService.getEmployeeById(eId).then((response)=>{
          seteName(response.data.eName);
          seteDesignation(response.data.eDesignation);
-     }).catch(error=>{
-         console.log(error)
-        })
+     }).catch(error => {
+         console.log(error);
+         
+        })}
     }, [eId])
     
                   

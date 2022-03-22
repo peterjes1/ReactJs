@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import EmployeeService from '../Services/EmployeeService'
 import './EmployeeComponent.css'
 
@@ -17,7 +17,7 @@ import './EmployeeComponent.css'
     const getEmployees=()=>{
         EmployeeService.getEmployees().then((response)=>{
             setEmployees(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         }).catch(error=>{
             console.log(error);
         });
@@ -61,7 +61,8 @@ import './EmployeeComponent.css'
                      
                      <td>{employee.eName}</td>
                     <td>{employee.eDesignation}</td>
-                    <td><Link className="btn btn-info" to={`/edit-employee/${employee.eId}`} >Update</Link>
+                    <td>
+                        {/* <Link className="btn btn-info" to={`/edit-employee/${employee.eId}`} >Update</Link> */}
                     <button className='btn btn-danger'  style={{marginLeft:"10px"}} onClick={()=>{
                         deleteEmployee(employee.eId)
                     }

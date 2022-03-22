@@ -6,6 +6,7 @@ import HeaderComponent from './components/HeaderComponent';
 import AddEmployeeComponent from './components/AddEmployeeComponent';
 import HomeComponent from './components/HomeComponent';
 import Login from './components/Login';
+import EditEmployeeComponent from './components/EditEmployeeComponent';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/edit-employee/:eId' element={<AddEmployeeComponent/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/logout' element={<Login/>}/>
+        <Route path='/edit' element={<EditEmployeeComponent/>}/>
       </Routes>
     </div>
     

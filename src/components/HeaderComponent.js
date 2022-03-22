@@ -35,6 +35,7 @@ const HeaderComponent = () => {
                                 Employee Operation Application
                             </a></li>
                        {currentUser && (<li><Link to="/add-employee" className='nav-link' >Add Employee</Link></li>)}
+                       {currentUser && (<li><Link to="/edit" className='nav-link' >Update Employee</Link></li>)}
                        {currentUser && (<li><Link to="/employee" className='nav-link'>Employee List</Link></li>)}
 
                     </ul>
