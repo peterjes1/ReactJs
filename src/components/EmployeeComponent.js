@@ -48,7 +48,7 @@ import './EmployeeComponent.css'
    
      <thead >
          <tr>
-             <th>Employee Id</th>
+            
              <th>Employee Name</th>
              <th>Employee Designation</th>
              <th>Action</th>
@@ -58,7 +58,7 @@ import './EmployeeComponent.css'
          {
              employees.map(employee=>
                  <tr key={employee.eId}>
-                     <td>{employee.eId}</td>
+                     
                      <td>{employee.eName}</td>
                     <td>{employee.eDesignation}</td>
                     <td><Link className="btn btn-info" to={`/edit-employee/${employee.eId}`} >Update</Link>
