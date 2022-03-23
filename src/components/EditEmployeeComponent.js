@@ -17,6 +17,7 @@ function EditEmployeeComponent() {
 
         }).catch(err => {
             alert('Employee with id '+eid+' is not present')
+            seteid('');
             navigate('/edit');
         })
 
