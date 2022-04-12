@@ -1,11 +1,12 @@
 import React, {useState,useEffect} from 'react'
-// import { Link } from 'react-router-dom';
+ import {  useNavigate } from 'react-router-dom';
 import EmployeeService from '../Services/EmployeeService'
 import './EmployeeComponent.css'
 
  function EmployeeComponent() {
 
     const [employees, setEmployees] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
       
@@ -23,19 +24,19 @@ import './EmployeeComponent.css'
         });
     }
 
-    const deleteEmployee=(id)=>{
-       const sure = window.confirm("Are you sure to delete the record?");
-        if(sure){
-        EmployeeService.deleteEmployee(id).then((response)=>{
-            console.log(response.data);
-            getEmployees();
-            alert("Employee record is deleted!");
-        }).catch(error=>{
-            console.log(error);
-        })
+    // const deleteEmployee=(id)=>{
+    //    const sure = window.confirm("Are you sure to delete the record?");
+    //     if(sure){
+    //     EmployeeService.deleteEmployee(id).then((response)=>{
+    //         console.log(response.data);
+    //         getEmployees();
+    //         alert("Employee record is deleted!");
+    //     }).catch(error=>{
+    //         console.log(error);
+    //     })
         
-    }
-    }
+    // }
+    // }
 
   return (
     <div className='container'>
@@ -51,22 +52,20 @@ import './EmployeeComponent.css'
             
              <th>Employee Name</th>
              <th>Employee Designation</th>
-             <th>Action</th>
+             <th>Employee Email</th>
+             <th>Location</th>
          </tr>
      </thead>
      <tbody>
          {
              employees.map(employee=>
-                 <tr key={employee.eId}>
+                 <tr onClick={()=>navigate(`/edit-employee/${employee.eId}`)}key={employee.eId}>
                      
                      <td>{employee.eName}</td>
                     <td>{employee.eDesignation}</td>
+                    <td>{employee.eMail}</td>
                     <td>
-                        {/* <Link className="btn btn-info" to={`/edit-employee/${employee.eId}`} >Update</Link> */}
-                    <button className='btn btn-danger'  style={{marginLeft:"10px"}} onClick={()=>{
-                        deleteEmployee(employee.eId)
-                    }
-                    }>Delete</button>
+                        {employee.location}
                     </td>
                             </tr>
              )

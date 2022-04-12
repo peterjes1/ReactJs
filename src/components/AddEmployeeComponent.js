@@ -5,6 +5,8 @@ import EmployeeService from '../Services/EmployeeService'
 const AddEmployeeComponent = () => {
     const [eName, seteName] = useState('')
     const [eDesignation, seteDesignation] = useState('')
+    const [email, setEmail] = useState('')
+    const [location,setLocation] = useState('')
     const navigate = useNavigate()
     const {eId} = useParams();
 
@@ -13,6 +15,8 @@ const AddEmployeeComponent = () => {
      EmployeeService.getEmployeeById(eId).then((response)=>{
          seteName(response.data.eName);
          seteDesignation(response.data.eDesignation);
+         setEmail(response.data.eMail);
+         setLocation(response.data.location);
      }).catch(error => {
          console.log(error);
          
@@ -22,7 +26,7 @@ const AddEmployeeComponent = () => {
                   
     const saveOrUpdateEmployee = (e)=>{
         e.preventDefault();
-        const employee={eName,eDesignation};
+        const employee={eName,eDesignation,email,location};
         if(eId){
             EmployeeService.updateEmployee(eId,employee).then((response)=>{
                 navigate('/employee');
@@ -42,6 +46,23 @@ const AddEmployeeComponent = () => {
         }
        
     }
+
+    const deleteEmployee=(e)=>{
+        e.preventDefault();
+        const sure = window.confirm("Are you sure to delete the record?");
+         if(sure){
+         EmployeeService.deleteEmployee(eId).then((response)=>{
+             console.log(response.data);
+             navigate('/employee');
+             alert("Employee record is deleted!");
+             
+         }).catch(error=>{
+             console.log(error);
+         })
+         
+     }
+     }
+
     const title=()=>{
         if(eId){
             return <div> Update Employee</div>;
@@ -90,7 +111,29 @@ const AddEmployeeComponent = () => {
                                 value={eDesignation}
                                 onChange= {(e)=> seteDesignation(e.target.value)}/>
                             </div>
+                            
+                            <div className='form-group mb-2'>
+                                <label className='form-label'>Employee Email:</label>
+                                <input type ='text' required placeholder='Enter Employee Email'
+                                name='email'
+                                className='form-control'
+                                value={email}
+                                onChange= {(e)=> setEmail(e.target.value)}/>
+                            </div>
+                            
+                            <div className='form-group mb-2'>
+                                <label className='form-label'>Employee Location:</label>
+                                <input type ='text' required placeholder='Enter Employee Location'
+                                name='location'
+                                className='form-control'
+                                value={location}
+                                onChange= {(e)=> setLocation(e.target.value)}/>
+                            </div>
                             <button className='btn btn-success' onClick={(e)=>{saveOrUpdateEmployee(e)}}>{title()}</button>
+                            <button className='btn btn-danger'  style={{marginLeft:"10px", marginRight: "10px"}} onClick={(e)=>{
+                        deleteEmployee(e)
+                    }
+                    }>Delete</button>
                             <Link to={"/employee"} className="btn btn-danger t">Cancel</Link>
                         </form>
                     </div>

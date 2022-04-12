@@ -37,7 +37,7 @@ const Login = () => {
     }
 
   return (
-    <div className='bg-secondary'>
+    <div className=''>
 
 <br/><br/>
         <div className='container '>
