@@ -129,12 +129,12 @@ const AddEmployeeComponent = () => {
                                 value={location}
                                 onChange= {(e)=> setLocation(e.target.value)}/>
                             </div>
-                            <button className='btn btn-success' onClick={(e)=>{saveOrUpdateEmployee(e)}}>{title()}</button>
-                            <button className='btn btn-danger'  style={{marginLeft:"10px", marginRight: "10px"}} onClick={(e)=>{
+                            <button className='btn btn-success' style={{marginRight:"10px"}} onClick={(e)=>{saveOrUpdateEmployee(e)}}>{title()}</button>
+                            {eId && <button className='btn btn-danger'   onClick={(e)=>{
                         deleteEmployee(e)
                     }
-                    }>Delete</button>
-                            <Link to={"/employee"} className="btn btn-danger t">Cancel</Link>
+                    }>Delete</button>}
+                            <Link to={"/employee"} className="btn btn-danger t" style={eId && {marginLeft:"10px"}}>Cancel</Link>
                         </form>
                     </div>
                 </div>
