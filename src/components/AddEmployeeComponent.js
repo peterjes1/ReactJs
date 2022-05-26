@@ -5,7 +5,7 @@ import EmployeeService from '../Services/EmployeeService'
 const AddEmployeeComponent = () => {
     const [eName, seteName] = useState('')
     const [eDesignation, seteDesignation] = useState('')
-    const [email, setEmail] = useState('')
+    const [eMail, setEmail] = useState('')
     const [location,setLocation] = useState('')
     const navigate = useNavigate()
     const {eId} = useParams();
@@ -26,7 +26,7 @@ const AddEmployeeComponent = () => {
                   
     const saveOrUpdateEmployee = (e)=>{
         e.preventDefault();
-        const employee={eName,eDesignation,email,location};
+        const employee={eName,eDesignation,eMail,location};
         if(eId){
             EmployeeService.updateEmployee(eId,employee).then((response)=>{
                 navigate('/employee');
@@ -117,7 +117,7 @@ const AddEmployeeComponent = () => {
                                 <input type ='text' required placeholder='Enter Employee Email'
                                 name='email'
                                 className='form-control'
-                                value={email}
+                                value={eMail}
                                 onChange= {(e)=> setEmail(e.target.value)}/>
                             </div>
                             

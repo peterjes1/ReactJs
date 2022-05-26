@@ -6,6 +6,8 @@ const EMPLOYEE_REST_API_URL_SAVE = 'http://localhost:9191/saveEmployee'
 const EMPLOYEE_REST_API_URL_ID = 'http://localhost:9191/getEmployee'
 const EMPLOYEE_REST_API_URL_DELETE = 'http://localhost:9191/deleteEmployee'
 const EMPLOYEE_REST_API_URL_LOGIN = 'http://localhost:9191/authenticate'
+const EMPLOYEE_REST_API_ADMIN = 'http://localhost:9191/isAdmin'
+const EMPLOYEE_REST_API_REGISTER = 'http://localhost:9191/register'
 
 class EmployeeService{
 
@@ -35,6 +37,17 @@ class EmployeeService{
     }
     logout(){
         localStorage.removeItem('user');
+    }
+
+    getIsAdmin(){
+        const user = JSON.parse(localStorage.getItem('user'));
+        const jwtToken = user.jwtToken;
+        return axios.post(EMPLOYEE_REST_API_ADMIN, {jwtToken});
+    }
+
+    register(username,password){
+        return axios.post(EMPLOYEE_REST_API_REGISTER,{username,password});
+
     }
 }
 

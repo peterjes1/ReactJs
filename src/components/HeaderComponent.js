@@ -6,12 +6,18 @@ const HeaderComponent = () => {
 
 
     const [currentUser, setcurrentUser] = useState(undefined);
+    const [isAdmin, setisAdmin] = useState(false);
 
     useEffect(() => {
       
     const user = JSON.parse(localStorage.getItem('user'));
       if(user){
           setcurrentUser(user);
+          EmployeeService.getIsAdmin().then(response => {
+              setisAdmin(response.data);
+              console.log(response.data);
+              
+          })
       }
     }, [])
     
@@ -34,8 +40,8 @@ const HeaderComponent = () => {
                             <a href='http://localhost:3000' className='navbar-brand'>
                                 Employee Operation Application
                             </a></li>
-                       {currentUser && (<li><Link to="/add-employee" className='nav-link' >Add Employee</Link></li>)}
-                       {currentUser && (<li><Link to="/edit" className='nav-link' >Update Employee</Link></li>)}
+                       {(currentUser && isAdmin) && (<li><Link to="/add-employee" className='nav-link' >Add Employee</Link></li>)}
+                       {(currentUser && isAdmin) && (<li><Link to="/edit" className='nav-link' >Update Employee</Link></li>)}
                        {currentUser && (<li><Link to="/employee" className='nav-link'>Employee List</Link></li>)}
 
                     </ul>
@@ -43,6 +49,7 @@ const HeaderComponent = () => {
                     <nav className='navbar-right '>
                         <ul className='navbar nav mr-auto'>
                         { !currentUser && (<li><Link to={"/login"} className='nav-link'>Login</Link></li>)}
+                        { !currentUser && (<li><Link to={"/register"} className='nav-link'>Register</Link></li>)}
                         {currentUser && (<li><Link to={"/logout"} onClick={()=>{logoutpage()}} className='nav-link'>Logout</Link></li>)}
                     </ul>
                     </nav>

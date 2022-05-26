@@ -6,11 +6,21 @@ import './EmployeeComponent.css'
  function EmployeeComponent() {
 
     const [employees, setEmployees] = useState([]);
+    const [isAdmin, setisAdmin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
       
     getEmployees();
+    const user = JSON.parse(localStorage.getItem('user'));
+      if(user){
+          
+          EmployeeService.getIsAdmin().then(response => {
+              setisAdmin(response.data);
+              console.log(response.data);
+              
+          })
+      }
       
     }, [])
     
@@ -59,7 +69,7 @@ import './EmployeeComponent.css'
      <tbody>
          {
              employees.map(employee=>
-                 <tr onClick={()=>navigate(`/edit-employee/${employee.eId}`)}key={employee.eId}>
+                 <tr onClick={isAdmin ? ()=>navigate(`/edit-employee/${employee.eId}`): ()=>{}}key={employee.eId}>
                      
                      <td>{employee.eName}</td>
                     <td>{employee.eDesignation}</td>

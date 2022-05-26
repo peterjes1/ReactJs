@@ -7,6 +7,7 @@ import AddEmployeeComponent from './components/AddEmployeeComponent';
 import HomeComponent from './components/HomeComponent';
 import Login from './components/Login';
 import EditEmployeeComponent from './components/EditEmployeeComponent';
+import Register from './components/Register';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/employee' element={<EmployeeComponent/>}/>
         <Route path='/add-employee' element={<AddEmployeeComponent/>}/>
         <Route path='/edit-employee/:eId' element={<AddEmployeeComponent/>}/>
+        <Route path='/register' element={<Register />}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/logout' element={<Login/>}/>
         <Route path='/edit' element={<EditEmployeeComponent/>}/>
